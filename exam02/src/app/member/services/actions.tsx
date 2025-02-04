@@ -146,6 +146,16 @@ export const processLogin = async (formState, formData: FormData) => {
     return errors
   }
 
-  //  회원가입 성공시에는 로그인 페이지로 이동
-  redirect('/member/main')
+  const apiUrl = process.env.API_URL + '/member-service/login'
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+  } catch (err) {
+    console.error(err)
+  }
 }
