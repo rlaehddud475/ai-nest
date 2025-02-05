@@ -1,8 +1,15 @@
 'use client'
-import { FaRegSquareCheck, FaSquareCheck } from 'react-icons/fa6'
-
+import { useRef, useEffect } from 'react'
 const LoginForm = ({ actionState, onChange, form }) => {
   const [errors, formAction, isPending] = actionState
+  const emailEl = useRef<HTMLInputElement | undefined>(undefined)
+
+  useEffect(() => {
+    //console.log('emailEl', emailEl)
+    if (emailEl) {
+      emailEl.current?.focus()
+    }
+  }, [emailEl])
   return (
     <>
       <form action={formAction}>
