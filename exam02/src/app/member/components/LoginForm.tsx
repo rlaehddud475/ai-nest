@@ -1,7 +1,8 @@
 'use client'
-import React from 'react'
-import { useRef, useEffect } from 'react'
-const LoginForm = ({ actionState, onChange, form }) => {
+import React, { useRef, useEffect } from 'react'
+import styles from './member.module.scss'
+
+const LoginForm = ({ form, onChange, actionState }) => {
   const [errors, formAction, isPending] = actionState
   const emailEl = useRef<HTMLInputElement | undefined>(undefined)
 
@@ -11,20 +12,22 @@ const LoginForm = ({ actionState, onChange, form }) => {
       emailEl.current?.focus()
     }
   }, [emailEl])
+
   return (
     <>
       <form action={formAction}>
-        <dl>
-          <dt>이메일</dt>
+        <dl className={styles.row}>
+          <dt className={styles.title}>이메일</dt>
           <dd>
             <input
+              ref={emailEl}
               type="text"
               name="email"
+              value={form?.email ?? ''}
               onChange={onChange}
-              value={form.email ?? ''}
             />
-            {errors?.email && errors.email.map((m) => <div key={m}>{m}</div>)}
           </dd>
+          {errors?.email && errors?.email.map((m) => <div key={m}>{m}</div>)}
         </dl>
         <dl>
           <dt>비밀번호</dt>
@@ -32,17 +35,17 @@ const LoginForm = ({ actionState, onChange, form }) => {
             <input
               type="password"
               name="password"
+              value={form?.password ?? ''}
               onChange={onChange}
-              value={form.password}
             />
-            {errors?.password &&
-              errors.password.map((m) => <div key={m}>{m}</div>)}
           </dd>
+          {errors?.password &&
+            errors?.password.map((m) => <div key={m}>{m}</div>)}
         </dl>
-
         <button type="submit" disabled={isPending}>
-          로그인 하기
+          로그인
         </button>
+        {errors?.global && errors?.global.map((m) => <div key={m}>{m}</div>)}
       </form>
     </>
   )

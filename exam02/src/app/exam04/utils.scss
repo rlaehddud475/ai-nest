@@ -1,0 +1,9 @@
+$red: red;
+$blue: blue;
+$orange: orange;
+$gray: gray;
+@mixin sqaure($size) {
+  $calculated: 200 * $size;
+  width: $calculated;
+  height: $calculated;
+}

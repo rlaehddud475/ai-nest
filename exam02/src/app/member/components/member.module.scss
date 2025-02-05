@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  .title {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+}
+
+/*
+:global .title {
+  font-weight: 700;
+  font-size: 2rem;
+} */
