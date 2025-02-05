@@ -1,0 +1,27 @@
+$red: red;
+$blue: blue;
+$orange: orange;
+$gray: gray;
+@mixin sqaure($size) {
+  $calculated: 200 * $size;
+  width: $calculated;
+  height: $calculated;
+}
+.box-group {
+  .box {
+    background: $red;
+    @include sqaure(1);
+    &.blue {
+      background: $blue;
+      @include sqaure(2);
+    }
+    &.orange {
+      background: $orange;
+      @include sqaure(3);
+    }
+    &.gray {
+      background: $gray;
+      @include sqaure(4);
+    }
+  }
+}
