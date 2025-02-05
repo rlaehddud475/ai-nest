@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import { useRef, useEffect } from 'react'
 const LoginForm = ({ actionState, onChange, form }) => {
   const [errors, formAction, isPending] = actionState
@@ -47,4 +48,4 @@ const LoginForm = ({ actionState, onChange, form }) => {
   )
 }
 
-export default LoginForm
+export default React.memo(LoginForm)
